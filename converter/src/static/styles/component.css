@@ -1,0 +1,30 @@
+.headerConvert {
+    width: 40%;
+    height: auto;
+    float: left;
+    background-color: #FCA88F;
+    border-radius: 0px 20px 20px 0px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20%;
+}
+
+.headerConvert__menu {
+    color: #1E0D00;
+    display: grid;
+    grid-template-rows: auto;
+    gap: 40px;
+    justify-content: center;
+    list-style-type: none;
+    font-size: large;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+}
+
+.headerConvert__menu > * {
+    color: #1E0D00;
+    text-decoration: none;
+    font-size: 2.2vh;
+}
