@@ -9,12 +9,14 @@ import App from './App';
 import CompressPage from './core/pages/CompressPage';
 import ConvertPage from './core/pages/ConvertPage';
 import ProfilePage from './core/pages/ProfilePage';
+import AuthModal from './core/widgets/modals/AuthModal';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <Provider store={storeRedux}>
+    <AuthModal isClosed={true}/>
     <React.StrictMode>
       <BrowserRouter>
         <Routes>

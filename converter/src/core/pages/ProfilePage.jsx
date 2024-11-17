@@ -13,7 +13,7 @@ function ProfilePage() {
             <span className="dopInfo">{PagesEnums.Profile}</span>
             <br />
             <br />
-            <h3 className="mainBody__h3">Страница профиля   {arraysSymbols[Math.ceil(Math.random() * arraysSymbols.length-1)]}</h3>
+            <h3 className="mainBody__h3">Мой уголок   {arraysSymbols[Math.ceil(Math.random() * arraysSymbols.length-1)]}</h3>
         </div>
     </Fragment>
 }
