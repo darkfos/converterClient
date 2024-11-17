@@ -4,6 +4,7 @@ import MainBanner1 from "./static/images/main_baner-1.png";
 import MainBanner2 from "./static/images/main_baner-2.png";
 import "./static/styles/component.css";
 import CustomBtn from "./core/widgets/customBtn/CustomBtn";
+import { PagesEnums } from "./core/en/js_en";
 
 
 function App() {
@@ -39,6 +40,9 @@ function App() {
   return <Fragment>
     <HeaderComponent />
     <main className="mainBody">
+      <span className="dopInfo">{PagesEnums.Main}</span>
+      <br />
+      <br />
       <h3 className="mainBody__h3">Добро пожаловать на <b style={spanStyle}>Converter</b>! &#128075;</h3>
       <img src={MainBanner1} style={styleImg} onMouseEnter={(e) => {
         if (e.target.style.width == "55%") {

@@ -100,3 +100,15 @@ body, html {
         transform: scaleX(-1) rotate(-30deg);
     }
 }
+
+
+/* Other */
+.dopInfo {
+    background-color: #9ceb9d;
+    padding: 20px;
+    border: 1px solid #9ceb9d;
+    border-radius: 20px;
+    position: absolute;
+    margin-left: 0%;
+    font-weight: 600;
+}
