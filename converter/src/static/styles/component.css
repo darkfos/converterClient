@@ -1,9 +1,25 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+@keyframes slide-in {
+    from {
+        translate: 50vw 0;
+        scale: 100% 1;
+    }
+    
+}
+
+
+/* HEADER */
+
 .headerConvert {
     width: 40%;
     height: auto;
     float: left;
     background-color: #FCA88F;
-    border-radius: 0px 20px 20px 0px;
+    border-radius: 0px 10px 10px 0px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -27,4 +43,60 @@
     color: #1E0D00;
     text-decoration: none;
     font-size: 2.2vh;
+    transition: all 0.35s ease-in;
+}
+
+.header_element_hover {
+    color: #12116a;
+    font-weight: bold;
+    font-size: 2.4vh;
+}
+
+/* MAIN */
+.mainBody {
+    padding-top: 50px;
+    position: absolute;
+    margin-left: 45%;
+    width: 55%;
+    animation-duration: 2.5s;
+    animation-name: slide-in;
+}
+
+.mainBody__h3 {
+    color: #12116a;
+    font-size: 3.8vh;
+    text-align: center;
+}
+
+.mainBody__btns {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 25% 25%;
+    justify-content: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60%;
+}
+
+.mainBody__banner2 {
+    z-index: -23;
+    position: absolute;
+    margin-left: 40%;
+    width: 500px;
+    transform: scaleX(-1) rotate(-30deg);
+}
+
+
+@media (max-width: 1800px) {
+    .mainBody__banner2 {
+        z-index: -23;
+        position: absolute;
+        margin-left: 25%;
+        width: 70%;
+        height: 60%;
+        transform: scaleX(-1) rotate(-30deg);
+    }
 }
