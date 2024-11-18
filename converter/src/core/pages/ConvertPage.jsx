@@ -6,10 +6,10 @@ import { PagesEnums } from "../en/js_en";
 
 function ConvertPage() {
     return <Fragment>
-        <HeaderComponent />
+        <HeaderComponent on_active="convert"/>
         <div className="mainBody">
-            <span className="dopInfo">{PagesEnums.Convert}</span>
-            <p>Convert page</p>
+        <span className="dopInfo"><span className="spanBlock">#</span>  {PagesEnums.Convert}</span>
+        <p>Convert page</p>
         </div>
     </Fragment>
 }

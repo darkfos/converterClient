@@ -52,6 +52,12 @@ body, html {
     font-size: 2.4vh;
 }
 
+.activeMenu {
+    color: #12116a;
+    font-weight: bold;
+    font-size: 2.4vh;
+}
+
 /* MAIN */
 .mainBody {
     padding-top: 50px;
@@ -78,7 +84,7 @@ body, html {
     justify-content: center;
     justify-content: center;
     align-items: center;
-    margin-top: 60%;
+    margin-top: 61%;
 }
 
 .mainBody__banner2 {
@@ -103,6 +109,7 @@ body, html {
 
 
 /* Other */
+
 .dopInfo {
     background-color: #9ceb9d;
     padding: 20px;
@@ -111,4 +118,57 @@ body, html {
     position: absolute;
     margin-left: 0%;
     font-weight: 600;
+}
+
+.spanBlock {
+    padding: 5px 10px 5px 10px;
+    background-color: #1E0D00;
+    border-radius: 8px;
+    color: white;
+}
+
+.profileBody {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap: 20px;
+    justify-content: center;
+}
+
+.profileBody__left {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+}
+
+.profileBody__left > img {
+    width: 80%;
+    border-radius: 20px;
+    margin: auto;
+}
+
+.profileLeft__btns {
+    display: grid;
+    gap: 10px;
+}
+
+.profileMenuItem {
+    background-color: #26243e;
+    color: white;
+    font-weight: 500;
+    font-size: 2.1vh;
+    padding: 15px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.profileBody__right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profileBody__right > p {
+    width: max-content;
 }
