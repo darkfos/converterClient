@@ -3,6 +3,14 @@ body, html {
     padding: 0;
 }
 
+hr {
+    border: none; /* Убираем стандартные границы */
+    height: 1px; /* Задаем высоту */
+    background-color: #1E0D00; /* Цвет линии */
+    margin: 20px 0; /* Отступы сверху и снизу */
+    width: 90%;
+}
+
 @keyframes slide-in {
     from {
         translate: 50vw 0;
@@ -167,4 +175,13 @@ body, html {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.profileSettings {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 42% 42%;
+    gap: 40px;
+    justify-content: left;
+    margin: auto;
 }

@@ -20,6 +20,24 @@ function ProfilePage() {
         border: "none"
     };
 
+    const profileAvatarBtn = {
+        backgroundColor: "#efc06d",
+        borderRadius: "10px",
+        padding: "20px",
+        color: "black",
+        fontWeight: "600",
+        border: "none"
+    };
+
+    const profilePasswordBtn = {
+        backgroundColor: "#1751a1",
+        borderRadius: "10px",
+        padding: "20px",
+        color: "white",
+        fontWeight: "600",
+        border: "none"
+    };
+
     const profileHistoryBtn = Object.assign({}, profileLeaveBtn);
     profileHistoryBtn.backgroundColor = "#a19ae7";
 
@@ -48,6 +66,11 @@ function ProfilePage() {
                 </div>
                 <div className="profileMenuItem">
                     <p>Дата регистрации:</p>
+                </div>
+                <hr />
+                <div className="profileSettings">
+                    <CustomBtn text="Сменить аватар" style={profileAvatarBtn} do_e = "" on_hover = "" classN = "" idU = ""/>
+                    <CustomBtn text="Сменить пароль" style={profilePasswordBtn} do_e = "" on_hover = "" classN = "" idU = ""/>
                 </div>
             </div>
         </div>
