@@ -35,7 +35,7 @@ function ConvertPage() {
                 </div>
                 <CustomBtn text="Конвертировать" style={{}} do_e="" on_hover="" classN="btnToConvert" idU="convert"/>
             </div>
-            </div>
+        </div>
     </Fragment>
 }
 

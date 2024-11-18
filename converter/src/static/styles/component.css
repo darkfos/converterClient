@@ -19,6 +19,27 @@ hr {
     
 }
 
+@keyframes changeBtnConvert {
+    0% {
+        background-color: #ef7765;
+    };
+    20% {
+        background-color: #ee725f;
+    };
+    40% {
+        background-color: #ec6955;
+    };
+    60% {
+        background-color: #e95d47;
+    };
+    80% {
+        background-color: #e9513a;
+    }
+    100% {
+        background-color: #e6462e;
+    }
+}
+
 
 /* HEADER */
 
@@ -205,6 +226,12 @@ hr {
     width: 40%;
     margin: auto;
     text-align: center;
+}
+
+.btnToConvert:hover {
+    animation-name: changeBtnConvert;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
 }
 
 .convertBody__files {
