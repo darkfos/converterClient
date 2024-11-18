@@ -7,8 +7,13 @@ class AuthAPIService {
         return null
     }
 
-    static async registrationUser() {
-        return null
+    static async registrationUser(userData) {
+        let req = await axios.post("http://localhost:7788/api/v1/auth/register", userData, {});
+        if (req.status === 204) {
+            return true
+        } else {
+            return false
+        }
     }
 
     static async updateToken() {
