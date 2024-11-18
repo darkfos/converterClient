@@ -185,3 +185,126 @@ hr {
     justify-content: left;
     margin: auto;
 }
+
+
+/* CONVERT */
+
+.convertBody {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 20px
+}
+
+.btnToConvert {
+    background-color: #ef7765;
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+    border: none;
+    font-weight: bold;
+    width: 40%;
+    margin: auto;
+    text-align: center;
+}
+
+.convertBody__files {
+    display: grid;
+    grid-template-columns: auto;
+    width: 80%;
+    margin: auto;
+    gap: 25px;
+}
+
+.convertBody__files > select {
+    padding: 10px;
+    color: black;
+    border-radius: 10px;
+    border: 2px solid #e31788;
+    background-color: white;
+}
+
+.input-file {
+
+	position: relative;
+
+	display: inline-block;
+
+}
+
+.input-file span {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	outline: none;
+	text-decoration: none;
+	font-size: 14px;
+	vertical-align: middle;
+	color: rgb(0, 0, 0);
+	text-align: center;
+	border-radius: 4px;
+	background-color: #e9b45a;
+	line-height: 22px;
+	height: 40px;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	border: none;
+	margin: 0;
+	transition: background-color 0.2s;
+}
+
+.input-file input[type=file] {
+
+	position: absolute;
+
+	z-index: -1;
+
+	opacity: 0;
+
+	display: block;
+
+	width: 0;
+
+	height: 0;
+
+}
+
+ 
+
+/* Focus */
+
+.input-file input[type=file]:focus + span {
+
+	box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+
+}
+
+ 
+
+/* Hover/active */
+
+.input-file:hover span {
+
+	background-color: #59be6e;
+    color: white;
+
+}
+
+.input-file:active span {
+
+	background-color: #efc06d;
+
+}
+
+ 
+
+/* Disabled */
+
+.input-file input[type=file]:disabled + span {
+	background-color: #eee;
+}
+
+.convertBody__selectTypeFile {
+    color: #26243e;
+    font-weight: 600;
+    font-size: 2vh;
+}
