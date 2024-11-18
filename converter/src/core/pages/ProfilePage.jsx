@@ -40,9 +40,15 @@ function ProfilePage() {
                 </div>
             </div>
             <div className="profileBody__right">
-                <p><span className="profileMenuItem">Электронная почта:</span> </p>
-                <p><span className="profileMenuItem">Пользовательское имя:</span> </p>
-                <p><span className="profileMenuItem">Дата регистрации:</span> </p>
+                <div className="profileMenuItem">
+                    <p>Электронная почта:</p>
+                </div>
+                <div className="profileMenuItem">
+                    <p>Пользовательское имя:</p>
+                </div>
+                <div className="profileMenuItem">
+                    <p>Дата регистрации:</p>
+                </div>
             </div>
         </div>
         </div>

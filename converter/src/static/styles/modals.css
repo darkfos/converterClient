@@ -61,7 +61,16 @@
     gap: 40px;
     justify-content: center;
     align-items: center;
-    
+}
+
+.modalAuthMenuR__buttons {
+    width: 100%;
+    text-align: center;
+    display: grid;
+    grid-template-columns: auto;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -79,6 +88,7 @@
     border: 2px solid #ff6052;
     border-radius: 20px;
     padding: 20px;
+    text-align: center;
     color: black;
     font-weight: 600;
     font-size: 1.6vh;
