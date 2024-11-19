@@ -4,8 +4,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const sliceAuthData = createSlice({
     name: "Tokens",
     initialState: {
-        "Access-Token": null,
-        "Refresh-Token": null
+        "Access-Token": document.cookie.split(" ")[0].split("=")[1],
+        "Refresh-Token": document.cookie.split(" ")[1].split("=")[1]
     },
     reducers: {
         setAccessToken(state, accessToken) {

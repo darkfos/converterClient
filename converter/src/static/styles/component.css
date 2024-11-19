@@ -332,3 +332,17 @@ hr {
     font-weight: 600;
     font-size: 2vh;
 }
+
+.userData {
+    color: #b1b0f0;
+    padding-top: 10px;
+}
+
+.errorAuthMessage {
+    color: white;
+    margin: auto;
+    font-weight: 700;
+    background-color: #e6462e;
+    border-radius: 10px;
+    padding: 10px;
+}

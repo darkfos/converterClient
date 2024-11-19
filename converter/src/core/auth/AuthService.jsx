@@ -4,11 +4,17 @@ import { setAccessToken } from "../../store/authSlice";
 
 class AuthAPIService {
 
-    static async loginUser(userData, disp) {
-        let req = await axios.post("http://localhost:7788/api/v1/auth/login", userData);
-        if (req.status === 200) {
-            return req.data
-        } else return false
+    static async loginUser(userData) {
+        try {
+            let req = await axios.post("http://localhost:7788/api/v1/auth/login", userData);
+            if (req.status === 200) {
+                return req.data
+            } else {
+                return false
+            }
+        } catch {
+            return false
+        }
     }
 
     static async registrationUser(userData) {

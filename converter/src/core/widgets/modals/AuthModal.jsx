@@ -52,7 +52,8 @@ function AuthModal({isClosed}) {
                 newFormData.append("username", userEmail);
                 newFormData.append("password", userPassword);
 
-                let result = await AuthAPIService.loginUser(newFormData, dispatch);
+                let result = await AuthAPIService.loginUser(newFormData);
+                console.log(result);
 
                 if (result) {
                     dispatch(setAccessToken(result.access_token));
@@ -71,8 +72,11 @@ function AuthModal({isClosed}) {
                     const errorMessage = document.createElement("p");
                     errorMessage.textContent = "Данный пользователь не существует!";
                     errorMessage.className = "errorAuthMessage";
+                    errorMessage.onclick = (e) => {
+                        e.target.remove();
+                    }
                     body.appendChild(
-                        document.createElement(errorMessage)
+                        errorMessage
                     );
                 }
             }
