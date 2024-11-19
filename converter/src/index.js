@@ -14,16 +14,18 @@ import AuthModal from './core/widgets/modals/AuthModal';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+
 root.render(
   <Provider store={storeRedux}>
-    <AuthModal isClosed={true}/>
+    {document.cookie.includes("access_token") && document.cookie.includes("refresh_token") ? null : <AuthModal isClosed={true}/>}
     <React.StrictMode>
       <BrowserRouter>
         <Routes>
             <Route element={<App />} path='/'></Route>
-            <Route element={<CompressPage />} path='/compress'></Route>
-            <Route element={<ConvertPage />} path='/convert'></Route>
-            <Route element={<ProfilePage />} path='/profile'></Route>
+            <Route element={document.cookie.includes("access_token") && document.cookie.includes("refresh_token") ? <CompressPage /> : <App />} path='/compress'></Route>
+            <Route element={document.cookie.includes("access_token") && document.cookie.includes("refresh_token") ? <ConvertPage /> : <App />} path='/convert'></Route>
+            <Route element={document.cookie.includes("access_token") && document.cookie.includes("refresh_token") ? <ProfilePage /> : <App />} path='/profile'></Route>
+            <Route element={<App />} path="/*"/>
         </Routes>
       </BrowserRouter>
     </React.StrictMode>

@@ -8,7 +8,7 @@ import { setAccessToken, setRefreshToken } from "../../../store/authSlice";
 import { useNavigate } from "react-router-dom";
 
 
-function HeaderComponent () {
+function HeaderComponent ({on_active}) {
 
     const navigator = useNavigate();
 
@@ -40,6 +40,7 @@ function HeaderComponent () {
         window.location.reload()
     }
 
+
     return <Fragment>
         <header className="headerConvert">
             <div className="img">
@@ -50,22 +51,22 @@ function HeaderComponent () {
                     e.target.classList.add("header_element_hover");
                 }} onMouseLeave={(e) => {
                     e.target.classList.remove("header_element_hover");
-                }}>Главная</Link>
+                }} id="main" className={on_active === "main" ? "activeMenu": ""}>Главная</Link>
                 <Link to="/convert" onMouseEnter={(e) => {
                     e.target.classList.add("header_element_hover");
                 }} onMouseLeave={(e) => {
                     e.target.classList.remove("header_element_hover");
-                }}>Конвертация</Link>
+                }} id="convert" className={on_active === "convert" ? "activeMenu": ""}>Конвертация</Link>
                 <Link to="/compress" onMouseEnter={(e) => {
                     e.target.classList.add("header_element_hover");
                 }} onMouseLeave={(e) => {
                     e.target.classList.remove("header_element_hover");
-                }}>Сжатие</Link>
+                }} id="compress" className={on_active === "compress" ? "activeMenu": ""}>Сжатие</Link>
                 <Link to="/profile" onMouseEnter={(e) => {
                     e.target.classList.add("header_element_hover");
                 }} onMouseLeave={(e) => {
                     e.target.classList.remove("header_element_hover");
-                }}>Профиль</Link>
+                }} id="profile" className={on_active === "profile" ? "activeMenu": ""}>Профиль</Link>
                 <br />
                 <br />
                 <CustomBtn text="&times;" style={styleLeaveButton} do_e={onClickLeave} on_hover="width: 50%; font-size: 40px"/>

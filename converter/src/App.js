@@ -11,7 +11,7 @@ function App() {
   const styleImg = {
     position: "absolute",
     width: "95%",
-    height: "60vh",
+    height: "63vh",
     borderRadius: "40px",
     transition: "width 3s ease-in-out",
     "z-index": 92838
@@ -38,9 +38,9 @@ function App() {
   styleButtonContactsTwo["border"] = "2.5px solid #b886ba";
 
   return <Fragment>
-    <HeaderComponent />
+    <HeaderComponent on_active="main"/>
     <main className="mainBody">
-      <span className="dopInfo">{PagesEnums.Main}</span>
+      <span className="dopInfo"><span className="spanBlock">#</span>  {PagesEnums.Main}</span>
       <br />
       <br />
       <h3 className="mainBody__h3">Добро пожаловать на <b style={spanStyle}>Converter</b>! &#128075;</h3>

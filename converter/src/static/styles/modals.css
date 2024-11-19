@@ -16,9 +16,9 @@
 }
 
 .modalAuthMenu {
-    width: 50%;
+    width: 45%;
     margin: auto;
-    margin-top: 10%;
+    margin-top: 5%;
     background-color: white;
     border: 1px solid gray;
     border-radius: 10px;
@@ -61,7 +61,16 @@
     gap: 40px;
     justify-content: center;
     align-items: center;
-    
+}
+
+.modalAuthMenuR__buttons {
+    width: 100%;
+    text-align: center;
+    display: grid;
+    grid-template-columns: auto;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -79,6 +88,7 @@
     border: 2px solid #ff6052;
     border-radius: 20px;
     padding: 20px;
+    text-align: center;
     color: black;
     font-weight: 600;
     font-size: 1.6vh;
@@ -91,7 +101,7 @@
 
 .closeModal {
     position: absolute;
-    margin-left: 40%;
+    margin-left: 35%;
     margin-top: 1%;
     background-color: #ff6052;
     color: white;
@@ -120,12 +130,14 @@
     justify-content: center;
     background-color: #fc4737;
     border-radius: 20px;
+    width: 100%;
     color: white;
+    padding-right: 4%;
 }
 
 .closeModalTwo {
     position: absolute;
-    margin-left: 33%;
+    margin-left: 31%;
     background-color: white;
     border: none;
     border-radius: 5px;
