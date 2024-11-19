@@ -24,8 +24,22 @@ class OtherAPIService {
         return null
     }
 
-    static async getProfileFoto() {
-        return null
+    static async getProfileFoto(token) {
+        try {
+            let req = await fetch("http://localhost:7788/api/v1/user/get_profile_image", {
+                method: "GET",
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            });
+    
+            if (req.ok) {
+                let data = await req.json();
+                return data
+            }
+        } catch {
+            return false
+        }
     }
 }
 

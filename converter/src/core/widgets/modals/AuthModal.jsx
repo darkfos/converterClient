@@ -6,7 +6,7 @@ import { CustomInput } from "../inputs/FormInput";
 import CustomBtn from "../customBtn/CustomBtn";
 import AuthAPIService from "../../auth/AuthService";
 import RegistryModal from "./RegistryModal";
-import reducer from "../../../store/authSlice";
+import reducer, { getAccessToken } from "../../../store/authSlice";
 
 // Auth
 import { useDispatch, useSelector } from "react-redux";
@@ -58,6 +58,8 @@ function AuthModal({isClosed}) {
                 if (result) {
                     dispatch(setAccessToken(result.access_token));
                     dispatch(setRefreshToken(result.refresh_token));
+                    
+                    console.log(state);
 
                     // Установка cookie
                     document.cookie = `access_token=${result.access_token}`;
@@ -65,8 +67,8 @@ function AuthModal({isClosed}) {
 
                     // Очистка localStorage
                     localStorage.clear();
-                    
                     closeModal();
+                    window.location.reload();
                 } else {
                     let body = document.querySelector(".modalAuthMenu__body");
                     const errorMessage = document.createElement("p");

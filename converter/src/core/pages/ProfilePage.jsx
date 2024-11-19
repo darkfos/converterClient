@@ -4,13 +4,16 @@ import { PagesEnums } from "../en/js_en";
 import ProfileAnonimAvatar from "../../static/images/profile_anonim_avatar.png";
 import CustomBtn from "../widgets/customBtn/CustomBtn";
 import OtherAPIService from "../auth/OtherApiService";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAccessToken } from "../../store/authSlice";
 
 
 function ProfilePage() {
     
     const [userData, setUserData] = useState(null);
     const selData = useSelector(state => state.AuthReducer);
+    const [profileAvatar, setProfileAvatar] = useState(null);
+    const disp = useDispatch();
 
     let arraysSymbols = ["🐴", "🦉", "🐒", "🐍", "🐶", "🐱"];
     
@@ -48,10 +51,13 @@ function ProfilePage() {
 
     useEffect(
         () => {
-            OtherAPIService.getProfileData(selData["Access-Token"].payload).then((message) => {
+            console.log(selData);
+            OtherAPIService.getProfileData(selData["Access-Token"]).then((message) => {
                 setUserData(message);
+                OtherAPIService.getProfileFoto(selData["Access-Token"]).then((m) => {
+                    setProfileAvatar(m.image);
+                }).catch((e) => {})
             }).catch((error) => {
-                console.log(error);
             })
 
         }, []
@@ -68,7 +74,7 @@ function ProfilePage() {
                 <h3 className="mainBody__h3">Мой уголок   {arraysSymbols[Math.ceil(Math.random() * arraysSymbols.length-1)]}</h3>
                 <div className="profileBody">
                     <div className="profileBody__left">
-                        <img src={ProfileAnonimAvatar}/>
+                        <img src={profileAvatar ? profileAvatar : ProfileAnonimAvatar}/>
                         <p>{userData.username}</p>
                         <div className="profileLeft__btns">
                             <CustomBtn text="История" style={profileHistoryBtn} do_e = "" on_hover = "" classN = "" idU = ""/>
