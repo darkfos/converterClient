@@ -52,7 +52,7 @@ function AuthModal({isClosed}) {
                 newFormData.append("username", userEmail);
                 newFormData.append("password", userPassword);
 
-                let result = await AuthAPIService.loginUser(newFormData);
+                let result = await AuthAPIService.loginUser(newFormData, dispatch);
 
                 if (result) {
                     dispatch(setAccessToken(result.access_token));

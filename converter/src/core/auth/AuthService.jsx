@@ -1,11 +1,10 @@
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { setAccessToken, setRefreshToken } from "../../store/authSlice";
+import { setAccessToken } from "../../store/authSlice";
 
 
 class AuthAPIService {
 
-    static async loginUser(userData) {
+    static async loginUser(userData, disp) {
         let req = await axios.post("http://localhost:7788/api/v1/auth/login", userData);
         if (req.status === 200) {
             return req.data
@@ -21,7 +20,7 @@ class AuthAPIService {
         }
     }
 
-    static async updateToken(token) {
+    static async updateToken(token, disp) {
         let req = await axios.post("http://localhost:7788/api/v1/auth/update_token", {}, {
             headers: {
                 "refresh-token": token
@@ -29,7 +28,15 @@ class AuthAPIService {
         })
 
         if (req.status === 200) {
-            return true
+            disp(setAccessToken(req.data["access_token"]));
+            document.cookie.split(" ").map((cookie) => {
+                if (cookie.includes("access_token")) {
+                    document.cookie = `access_token=${req.data["access_token"]}`;
+                } else {
+                    document.cookie = cookie;
+                }
+            })
+            return req.data;
         } return false
     }
 }
