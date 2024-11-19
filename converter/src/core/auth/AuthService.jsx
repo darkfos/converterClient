@@ -1,10 +1,15 @@
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setAccessToken, setRefreshToken } from "../../store/authSlice";
 
 
 class AuthAPIService {
 
-    static async loginUser() {
-        return null
+    static async loginUser(userData) {
+        let req = await axios.post("http://localhost:7788/api/v1/auth/login", userData);
+        if (req.status === 200) {
+            return req.data
+        } else return false
     }
 
     static async registrationUser(userData) {
@@ -16,8 +21,16 @@ class AuthAPIService {
         }
     }
 
-    static async updateToken() {
-        return null
+    static async updateToken(token) {
+        let req = await axios.post("http://localhost:7788/api/v1/auth/update_token", {}, {
+            headers: {
+                "refresh-token": token
+            }
+        })
+
+        if (req.status === 200) {
+            return true
+        } return false
     }
 }
 

@@ -6,9 +6,10 @@ import { CustomInput } from "../inputs/FormInput";
 import CustomBtn from "../customBtn/CustomBtn";
 import AuthAPIService from "../../auth/AuthService";
 import RegistryModal from "./RegistryModal";
+import reducer from "../../../store/authSlice";
 
 // Auth
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setAccessToken, setRefreshToken } from "../../../store/authSlice";
 
 
@@ -19,11 +20,15 @@ function AuthModal({isClosed}) {
     const [userPassword, setPassword] = useState(null);
     const [authModal, setModal] = useState("auth");
 
+    const state = useSelector(state => state.AuthReducer);
+    const dispatch = useDispatch();
+
     function closeModal() {
         setModalState(false);
     }
 
     function loginUser() {
+
         if (userPassword === null || userPassword.length < 8) {
 
             let btn = document.getElementById("btn1");
@@ -38,10 +43,41 @@ function AuthModal({isClosed}) {
                 btn.classList.remove("shake");
                 btn2.classList.remove("shake");
             }, 1200);
+
         } else {
             let req = async () => {
-                await AuthAPIService.loginUser(userEmail, userPassword);
+
+                let newFormData = new FormData();
+
+                newFormData.append("username", userEmail);
+                newFormData.append("password", userPassword);
+
+                let result = await AuthAPIService.loginUser(newFormData);
+
+                if (result) {
+                    dispatch(setAccessToken(result.access_token));
+                    dispatch(setRefreshToken(result.refresh_token));
+
+                    // Установка cookie
+                    document.cookie = `access_token=${result.access_token}`;
+                    document.cookie = `refresh_token=${result.refresh_token}`;
+
+                    // Очистка localStorage
+                    localStorage.clear();
+                    
+                    closeModal();
+                } else {
+                    let body = document.querySelector(".modalAuthMenu__body");
+                    const errorMessage = document.createElement("p");
+                    errorMessage.textContent = "Данный пользователь не существует!";
+                    errorMessage.className = "errorAuthMessage";
+                    body.appendChild(
+                        document.createElement(errorMessage)
+                    );
+                }
             }
+
+            req();
         }
     }
 
