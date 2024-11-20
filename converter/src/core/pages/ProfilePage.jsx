@@ -51,7 +51,6 @@ function ProfilePage() {
 
     useEffect(
         () => {
-            console.log(selData);
             OtherAPIService.getProfileData(selData["Access-Token"]).then((message) => {
                 setUserData(message);
                 OtherAPIService.getProfileFoto(selData["Access-Token"]).then((m) => {
