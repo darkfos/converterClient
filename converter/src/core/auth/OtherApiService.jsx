@@ -1,9 +1,11 @@
 import axios from "axios";
+import AuthAPIService from "./AuthService";
 
 
 class OtherAPIService {
     
     static async getProfileData(token) {
+
         let req = await axios.get("http://localhost:7788/api/v1/user/information_about_me", {
             headers: {
                 Authorization: "Bearer " + token
@@ -12,8 +14,10 @@ class OtherAPIService {
 
         if (req.status === 200) {
             return req.data
-        }
-        return false
+        };
+
+        await AuthAPIService.updateToken(token);
+        await OtherAPIService.getProfileData(token);
     }
 
     static async setHistory(token, text) {
@@ -32,7 +36,8 @@ class OtherAPIService {
                 return true
             }
         } catch {
-            return false
+            await AuthAPIService.updateToken(token);
+            await OtherAPIService.setHistory(token, text);
         }
     }
 
@@ -47,7 +52,8 @@ class OtherAPIService {
                 return true
             }
         } catch {
-            return false
+            await AuthAPIService.updateToken(token);
+            await OtherAPIService.updateUserAvatar(token, new_awatar);
         }
     }
 
@@ -63,9 +69,10 @@ class OtherAPIService {
                 return req.data
             }
         } catch {
+            await AuthAPIService.updateToken(token);
+            await OtherAPIService.getHistory(token);
             return []
         }
-        return null
     }
 
     static async getProfileFoto(token) {
@@ -82,7 +89,8 @@ class OtherAPIService {
                 return data
             }
         } catch {
-            return false
+            await AuthAPIService.updateToken(token);
+            await OtherAPIService.getProfileData(token);
         }
     }
 
@@ -102,7 +110,8 @@ class OtherAPIService {
                 throw Error;
             }
         } catch {
-            return false;
+            await AuthAPIService.updateToken(token);
+            await OtherAPIService(token, file);
         }
     }
 }

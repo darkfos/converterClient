@@ -26,15 +26,15 @@ class AuthAPIService {
         }
     }
 
-    static async updateToken(token, disp) {
+    static async updateToken(token) {
+        console.log("!!!")
         let req = await axios.post("http://localhost:7788/api/v1/auth/update_token", {}, {
             headers: {
                 "refresh-token": token
             }
         })
-
-        if (req.status === 200) {
-            disp(setAccessToken(req.data["access_token"]));
+        
+        if (req.status === 200 || req.status === 201) {
             document.cookie.split(" ").map((cookie) => {
                 if (cookie.includes("access_token")) {
                     document.cookie = `access_token=${req.data["access_token"]}`;

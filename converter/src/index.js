@@ -15,6 +15,11 @@ import AuthModal from './core/widgets/modals/AuthModal';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
+setTimeout(() => {
+  console.log(1)
+}, 1000);
+
+
 root.render(
   <Provider store={storeRedux}>
     {document.cookie.includes("access_token") && document.cookie.includes("refresh_token") ? null : <AuthModal isClosed={true}/>}

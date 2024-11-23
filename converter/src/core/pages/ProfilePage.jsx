@@ -56,8 +56,11 @@ function ProfilePage() {
                 setUserData(message);
                 OtherAPIService.getProfileFoto(selData["Access-Token"]).then((m) => {
                     setProfileAvatar(m.image);
-                }).catch((e) => {})
+                }).catch((e) => {
+                    console.log(e);
+                })
             }).catch((error) => {
+                console.log(error + "s");
             })
 
         }, []

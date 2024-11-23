@@ -19,6 +19,7 @@ function CompressPage() {
         let req = await OtherAPIService.compressUserFile(selector["Access-Token"], fileData);
         
         if (req) {
+            
             const blobData = new Blob([req.data], {type: "application/pdf"});
             let bodyDiv = document.querySelector(".convertBtns");
             let newBtn = document.createElement("a");
