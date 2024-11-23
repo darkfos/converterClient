@@ -16,7 +16,7 @@ function CompressPage() {
         let fileData = new FormData();
         let file = document.getElementById("PDF").files[0];
         fileData.append("file", file);
-        let req = await OtherAPIService.compressUserFile(selector["Access-Token"], fileData);
+        let req = await OtherAPIService.compressUserFile(selector["Access-Token"], fileData, selector["Refresh-Token"]);
         
         if (req) {
             
@@ -33,7 +33,7 @@ function CompressPage() {
 
             setTimeout(() => {
                 newBtn.remove();
-            }, 20_000);
+            }, 7_000);
         } else {
             console.log("Не удалось сжать файл");
         }

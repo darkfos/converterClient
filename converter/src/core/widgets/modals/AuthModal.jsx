@@ -6,7 +6,6 @@ import { CustomInput } from "../inputs/FormInput";
 import CustomBtn from "../customBtn/CustomBtn";
 import AuthAPIService from "../../auth/AuthService";
 import RegistryModal from "./RegistryModal";
-import reducer, { getAccessToken } from "../../../store/authSlice";
 
 // Auth
 import { useDispatch, useSelector } from "react-redux";
@@ -61,8 +60,8 @@ function AuthModal({isClosed}) {
                     
 
                     // Установка cookie
-                    document.cookie = `access_token=${result.access_token}`;
-                    document.cookie = `refresh_token=${result.refresh_token}`;
+                    document.cookie = `access_token=${result.access_token}; SameSite=None; Secure; path=/`;
+                    document.cookie = `refresh_token=${result.refresh_token}; SameSite=None; Secure; path=/`;
 
                     // Очистка localStorage
                     localStorage.clear();

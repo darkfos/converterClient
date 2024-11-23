@@ -24,14 +24,14 @@ root.render(
   <Provider store={storeRedux}>
     {document.cookie.includes("access_token") && document.cookie.includes("refresh_token") ? null : <AuthModal isClosed={true}/>}
     <React.StrictMode>
-      <BrowserRouter>
+      <BrowserRouter future={ {v7_startTransition: true} }>
         <Routes>
             <Route element={<App />} path='/'></Route>
             <Route element={document.cookie.includes("access_token") && document.cookie.includes("refresh_token") ? <CompressPage /> : <App />} path='/compress'></Route>
             <Route element={document.cookie.includes("access_token") && document.cookie.includes("refresh_token") ? <ConvertPage /> : <App />} path='/convert'></Route>
             <Route element={document.cookie.includes("access_token") && document.cookie.includes("refresh_token") ? <ProfilePage /> : <App />} path='/profile'></Route>
             <Route element={<App />} path="/*"/>
-        </Routes>
+        </Routes>,
       </BrowserRouter>
     </React.StrictMode>
   </Provider>

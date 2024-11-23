@@ -4,23 +4,26 @@ import AuthAPIService from "./AuthService";
 
 class OtherAPIService {
     
-    static async getProfileData(token) {
-
-        let req = await axios.get("http://localhost:7788/api/v1/user/information_about_me", {
-            headers: {
-                Authorization: "Bearer " + token
+    static async getProfileData(token, refresh_token) {
+        try {
+            let req = await axios.get("http://localhost:7788/api/v1/user/information_about_me", {
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            })
+    
+            if (req.status === 200) {
+                return req.data
+            } else if (req.status === 406) {
+                console.log(2323)
             }
-        })
-
-        if (req.status === 200) {
-            return req.data
-        };
-
-        await AuthAPIService.updateToken(token);
-        await OtherAPIService.getProfileData(token);
+        } catch {
+            await AuthAPIService.updateToken(refresh_token);
+            await OtherAPIService.getProfileData(token);
+        }
     }
 
-    static async setHistory(token, text) {
+    static async setHistory(token, text, refresh_token) {
         try {
             let date = new Date();
             let req = await axios.post("http://localhost:7788/api/v1/history/create_history", {
@@ -36,12 +39,12 @@ class OtherAPIService {
                 return true
             }
         } catch {
-            await AuthAPIService.updateToken(token);
+            await AuthAPIService.updateToken(refresh_token);
             await OtherAPIService.setHistory(token, text);
         }
     }
 
-    static async updateUserAvatar(token, new_awatar) {
+    static async updateUserAvatar(token, new_awatar, refresh_token) {
         try {
             let req = await axios.patch("http://localhost:7788/api/v1/user/update_user_avatar", new_awatar, {
                 headers: {
@@ -52,12 +55,12 @@ class OtherAPIService {
                 return true
             }
         } catch {
-            await AuthAPIService.updateToken(token);
+            await AuthAPIService.updateToken(refresh_token);
             await OtherAPIService.updateUserAvatar(token, new_awatar);
         }
     }
 
-    static async getHistory(token) {
+    static async getHistory(token, refresh_token) {
         try {
             let req = await axios.get("http://localhost:7788/api/v1/history/get_all_user_history", {
                 headers: {
@@ -69,13 +72,13 @@ class OtherAPIService {
                 return req.data
             }
         } catch {
-            await AuthAPIService.updateToken(token);
+            await AuthAPIService.updateToken(refresh_token);
             await OtherAPIService.getHistory(token);
             return []
         }
     }
 
-    static async getProfileFoto(token) {
+    static async getProfileFoto(token, refresh_token) {
         try {
             let req = await fetch("http://localhost:7788/api/v1/user/get_profile_image", {
                 method: "GET",
@@ -89,12 +92,12 @@ class OtherAPIService {
                 return data
             }
         } catch {
-            await AuthAPIService.updateToken(token);
+            await AuthAPIService.updateToken(refresh_token);
             await OtherAPIService.getProfileData(token);
         }
     }
 
-    static async compressUserFile(token, file) {
+    static async compressUserFile(token, file, refresh_token) {
         try {
             let req = await axios.post("http://localhost:7788/api/v1/file/compression_file", file, {
                 headers: {
@@ -110,8 +113,51 @@ class OtherAPIService {
                 throw Error;
             }
         } catch {
-            await AuthAPIService.updateToken(token);
+            await AuthAPIService.updateToken(refresh_token);
             await OtherAPIService(token, file);
+        }
+    }
+
+    static async convertUserPDFFileToDocx(token, file, refresh_token) {
+        try {
+            let req = await axios.post("http://localhost:7788/api/v1/file/convert_pdf_to_docx", file, {
+                headers: {
+                    Authorization: "Bearer " + token,
+                    "Content-Type": "multipart/form-data"
+                },
+                responseType: "blob"
+            });
+
+            if (req.status === 201 || req.status === 200) {
+                return req.data
+            } else if (req.status === 406) {
+                await AuthAPIService.updateToken(refresh_token);
+                await this.convertUserPDFFile(token, file);
+            }
+        } catch {
+            return false
+        }
+    }
+
+    static async convertUserDocxFileToPDF(token, file, refresh_token) {
+        try {
+            let req = await axios.post("http://localhost:7788/api/v1/file/convert_docx_to_pdf", file, {
+                headers: {
+                    Authorization: "Bearer " + token,
+                    "Content-Type": "multipart/form-data"
+                },
+                responseType: "blob"
+            });
+
+            if (req.status === 200 || req.status === 201) {
+                return req.data
+            } else if (req.status === 406) {
+                console.log(1);
+                await AuthAPIService.updateToken(refresh_token);
+                await this.convertUserDocxFileToPDF(token, file);
+            }
+        } catch {
+            return false
         }
     }
 }

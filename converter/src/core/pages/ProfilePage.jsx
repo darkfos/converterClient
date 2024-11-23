@@ -52,9 +52,9 @@ function ProfilePage() {
 
     useEffect(
         () => {
-            OtherAPIService.getProfileData(selData["Access-Token"]).then((message) => {
+            OtherAPIService.getProfileData(selData["Access-Token"], selData["Refresh-Token"]).then((message) => {
                 setUserData(message);
-                OtherAPIService.getProfileFoto(selData["Access-Token"]).then((m) => {
+                OtherAPIService.getProfileFoto(selData["Access-Token"], selData["Refresh-Token"]).then((m) => {
                     setProfileAvatar(m.image);
                 }).catch((e) => {
                     console.log(e);
