@@ -5,7 +5,7 @@ import ProfileAnonimAvatar from "../../static/images/profile_anonim_avatar.png";
 import CustomBtn from "../widgets/customBtn/CustomBtn";
 import OtherAPIService from "../auth/OtherApiService";
 import { useDispatch, useSelector } from "react-redux";
-import { getAccessToken } from "../../store/authSlice";
+import { getAccessToken, setAccessToken, setRefreshToken } from "../../store/authSlice";
 
 
 function ProfilePage() {
@@ -25,7 +25,8 @@ function ProfilePage() {
         borderRadius: "10px",
         width: "60%",
         margin: "auto",
-        border: "none"
+        border: "none",
+        transition: "all 0.8s ease-in-out"
     };
 
     const profileAvatarBtn = {
@@ -34,7 +35,7 @@ function ProfilePage() {
         padding: "20px",
         color: "black",
         fontWeight: "600",
-        border: "none"
+        transition: "all 0.8s ease-in-out",
     };
 
     const profilePasswordBtn = {
@@ -43,7 +44,7 @@ function ProfilePage() {
         padding: "20px",
         color: "white",
         fontWeight: "600",
-        border: "none"
+        transition: "all 0.8s ease-in-out",
     };
 
     const profileHistoryBtn = Object.assign({}, profileLeaveBtn);
@@ -60,7 +61,15 @@ function ProfilePage() {
             })
 
         }, []
-    )
+    );
+
+    const leavePage = () => {
+        document.cookie = "access_token=; Max-Age=-1;"; // Access Token
+        document.cookie = "refresh_token=; Max-Age=-1;"; // Access Token
+        disp(setAccessToken(null));
+        disp(setRefreshToken(null));
+        document.location.reload();
+    }
 
     if (userData) {
         return (
@@ -76,8 +85,8 @@ function ProfilePage() {
                         <img src={profileAvatar ? profileAvatar : ProfileAnonimAvatar}/>
                         <p>{userData.username}</p>
                         <div className="profileLeft__btns">
-                            <CustomBtn text="История" style={profileHistoryBtn} do_e = "" on_hover = "" classN = "" idU = ""/>
-                            <CustomBtn text="Выйти" style={profileLeaveBtn} do_e = "" on_hover = "" classN = "" idU = ""/>
+                            <CustomBtn text="История" style={profileHistoryBtn} do_e = "" on_hover = "padding: 20px" classN = "" idU = ""/>
+                            <CustomBtn text="Выйти" style={profileLeaveBtn} do_e = {leavePage} on_hover = "padding: 20px" classN = "" idU = ""/>
                         </div>
                     </div>
                     <div className="profileBody__right">
@@ -92,8 +101,8 @@ function ProfilePage() {
                         </div>
                         <hr />
                         <div className="profileSettings">
-                            <CustomBtn text="Сменить аватар" style={profileAvatarBtn} do_e = "" on_hover = "" classN = "" idU = ""/>
-                            <CustomBtn text="Сменить пароль" style={profilePasswordBtn} do_e = "" on_hover = "" classN = "" idU = ""/>
+                            <CustomBtn text="Сменить аватар" style={profileAvatarBtn} do_e = "" on_hover = "padding: 30px" classN = "" idU = ""/>
+                            <CustomBtn text="Сменить пароль" style={profilePasswordBtn} do_e = "" on_hover = "padding: 30px" classN = "" idU = ""/>
                         </div>
                     </div>
                 </div>

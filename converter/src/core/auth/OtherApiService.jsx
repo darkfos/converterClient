@@ -85,6 +85,26 @@ class OtherAPIService {
             return false
         }
     }
+
+    static async compressUserFile(token, file) {
+        try {
+            let req = await axios.post("http://localhost:7788/api/v1/file/compression_file", file, {
+                headers: {
+                    Authorization: "Bearer " + token,
+                    "Content-Type": "multipart/form-data"
+                },
+                responseType: "blob"
+            })
+                        
+            if (req.status ===  201 || req.status === 200) {
+                return req;
+            } else {
+                throw Error;
+            }
+        } catch {
+            return false;
+        }
+    }
 }
 
 

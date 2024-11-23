@@ -55,6 +55,7 @@ function AuthModal({isClosed}) {
                 let result = await AuthAPIService.loginUser(newFormData);
 
                 if (result) {
+
                     dispatch(setAccessToken(result.access_token));
                     dispatch(setRefreshToken(result.refresh_token));
                     
