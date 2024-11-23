@@ -26,24 +26,29 @@ class AuthAPIService {
         }
     }
 
-    static async updateToken(token, disp) {
-        let req = await axios.post("http://localhost:7788/api/v1/auth/update_token", {}, {
-            headers: {
-                "refresh-token": token
-            }
-        })
-
-        if (req.status === 200) {
-            disp(setAccessToken(req.data["access_token"]));
-            document.cookie.split(" ").map((cookie) => {
-                if (cookie.includes("access_token")) {
-                    document.cookie = `access_token=${req.data["access_token"]}`;
-                } else {
-                    document.cookie = cookie;
+    static async updateToken(token) {
+        try {
+            let req = await axios.post("http://localhost:7788/api/v1/auth/update_token", {}, {
+                headers: {
+                    "refresh-token": token
                 }
             })
-            return req.data;
-        } return false
+            
+            if (req.status === 200 || req.status === 201) {
+                document.cookie.split(" ").map((cookie) => {
+    
+                    // Очистка
+                    document.cookie = "access_token=; Max-Age=-1;"; // Access Token
+                    document.cookie = "refresh_token=; Max-Age=-1;"; // Refresh Token
+    
+                    document.cookie = "access_token="+req.data["access_token"]+"; SameSite=None; Secure; path=/";
+                    document.cookie = "refresh_token="+token + "; SameSite=None; Secure; path=/";
+                })
+                return req.data;
+            } return false
+        } catch {
+            return false
+        }
     }
 }
 

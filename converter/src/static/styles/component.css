@@ -19,6 +19,21 @@ hr {
     
 }
 
+@keyframes changeBtnDownload {
+    0% {
+        background-color: #e31788;
+    }
+    20% {
+        background-color: #ce177c;
+    }
+    40% {
+        background-color: #ce197c;
+    }
+    100% {
+        background-color: #ce227c;
+    }
+}
+
 @keyframes changeBtnConvert {
     0% {
         background-color: #ef7765;
@@ -345,4 +360,29 @@ hr {
     background-color: #e6462e;
     border-radius: 10px;
     padding: 10px;
+}
+
+.btnToDownload {
+    background-color: #e31788;
+    color: white;
+    width: 50%;
+    font-size: 2vh;
+    padding-top: 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.convertBtns {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: auto;
+    width: 80%;
+}
+
+.btnToDownload:hover {
+    animation: changeBtnDownload;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
 }

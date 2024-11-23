@@ -3,10 +3,41 @@ import HeaderComponent from "../components/header/HeaderComponent";
 import { PagesEnums } from "../en/js_en";
 import CustomBtn from "../widgets/customBtn/CustomBtn";
 import { CustomInput } from "../widgets/inputs/FormInput";
+import OtherAPIService from "../auth/OtherApiService";
+import { useSelector } from "react-redux";
 
 
 function CompressPage() {
+
     const [file, setField] = useState(null);
+    const selector = useSelector(state => state.AuthReducer);
+
+    let onCompressFile = async () => {
+        let fileData = new FormData();
+        let file = document.getElementById("PDF").files[0];
+        fileData.append("file", file);
+        let req = await OtherAPIService.compressUserFile(selector["Access-Token"], fileData, selector["Refresh-Token"]);
+        
+        if (req) {
+            
+            const blobData = new Blob([req.data], {type: "application/pdf"});
+            let bodyDiv = document.querySelector(".convertBtns");
+            let newBtn = document.createElement("a");
+            newBtn.textContent = "Скачать";
+            newBtn.className = "btnToDownload";
+            newBtn.href = URL.createObjectURL(blobData);
+            newBtn.download = "your_new_file.pdf";
+            newBtn.id = Math.random();
+            
+            bodyDiv.appendChild(newBtn);
+
+            setTimeout(() => {
+                newBtn.remove();
+            }, 7_000);
+        } else {
+            console.log("Не удалось сжать файл");
+        }
+    }
 
     return <Fragment>
         <HeaderComponent on_active="compress"/>
@@ -21,7 +52,9 @@ function CompressPage() {
                         <span>Выберите файл</span>
                     </label>
                 </div>
-                <CustomBtn text="Конвертировать" style={{}} do_e="" on_hover="" classN="btnToConvert" idU="convert"/>
+                <div className="convertBtns">
+                    <CustomBtn text="Конвертировать" style={{}} do_e={onCompressFile} on_hover="" classN="btnToConvert" idU="convert"/>
+                </div>
             </div>
         </div>
     </Fragment>

@@ -1,9 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import AuthAPIService from "../core/auth/AuthService";
 
 
 try {
-    var access_token = document.cookie.split(" ")[0].split("=")[1].split(";")[0]
-    var refresh_token = document.cookie.split(" ")[1].split("=")[1].split(";")[0]
+    
+    var access_token = document.cookie.split(" ")[0].split("=")[1].split(";")[0];
+    var refresh_token = document.cookie.split(" ")[1].split("=")[1].split(";")[0];
+
 } catch {
     access_token = false;
     refresh_token = false;
